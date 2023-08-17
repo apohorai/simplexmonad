@@ -29,7 +29,6 @@ import qualified DBus as D
 import qualified DBus.Client as D
 import qualified Codec.Binary.UTF8.String as UTF8
 --import XMonad.Config.Prime.Monadic hiding ((|||))
-import PohaVars
 import XMonad.Hooks.SetWMName
 
 main :: IO ()
@@ -38,11 +37,12 @@ main = xmonad
      . ewmh
      . withSB (mySBL <> mySBR)  .docks $ myConfig
 
-mySBL = statusBarPropTo topLogFile topBarFileLocation $ pure myXmobarPP_top
-mySBR = statusBarPropTo bottomLogFile bottomBarFileLocation $ pure myXmobarPP_bottom
+
+mySBL = statusBarPropTo "_XMONAD_LOG_1" "$XMONAD_DIR/xmobartop" $ pure myXmobarPP_top
+mySBR = statusBarPropTo "_XMONAD_LOG_2" "$XMONAD_DIR/xmobarbottom" $ pure myXmobarPP_bottom
 
 myConfig = def
-    { modMask    = mod4Mask      -- Rebind Mod to the Super key
+    { modMask    = mod1Mask      -- Rebind Mod to the Super key
     , layoutHook = myLayoutHook      -- Use custom layouts
     , manageHook = myManageHook <+> manageDocks -- Match on certain windows
     , terminal   = myTerminal
@@ -83,7 +83,7 @@ myLayoutHook =
     master    = 
       withBorder 1 $
       renamed [Replace "master"] $ 
-      spacingWithEdge 16 $
+      spacingWithEdge 8 $
       avoidStruts $ 
       noBorders $ 
       Tall nmaster delta ratio

@@ -41,9 +41,9 @@ myCommands :: [Runnable]
 myCommands =
   [
     Run XMonadLog 
-   ,  Run $ CommandReader "/home/apohorai/.scripts/haskell/xmobar/cpubar" "cpubar" 
+   ,  Run $ CommandReader "$XMONAD_DIR/scripts/haskell/cpubar" "cpubar" 
 -- ,  Run $ CommandReader "~/.scripts/haskell/xmobar/netbar wlp0s20f0u7" "netbar" 
-   ,  Run $ Com "/usr/bin/bash" ["-c","/home/apohorai/.scripts/bash/xmobarVolumeBar.sh"] "soundbar" 10
+   ,  Run $ Com "/usr/bin/bash" ["-c","$XMONAD_DIR/scripts/bash/xmobarVolumeBar.sh"] "soundbar" 10
 -- ,  Run $ Com "sh" ["/home/apohorai/.scripts/bash/xmobarMemBar.sh"] "membar" 10
  , Run $ UnsafeXPropertyLog "_XMONAD_LOG_1"
   ]
